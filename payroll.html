@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Payroll</title>
+</head>
+<body>
+<div class="display-function" id='d'>
+            <div>
+                
+            </div>
+            <div>
+                <div>
+                    <label for="employee-name">Employee Name: </label>
+                    <input name="employee-name" type="text" id="employee-name">
+                </div>
+                <div>
+                    <label for="days-worked">Days Worked: </label>
+                    <input name="days-worked" type="number" id="days-worked">
+                </div>
+                <div>
+                    <label for="daily-rate">Daily Rate: </label>
+                    <input name="daily-rate" type="number" id="daily-rate">
+                </div>
+                <div>
+                    <label for="deduction-amount">Deduction Amount: </label>
+                    <input name="deduction-amount" type="number" id="deduction-amount">
+                </div>
+                <button onclick="addEmployee()">Add Employee</button>
+
+                <button class="primary" onclick="window.dialog.showModal();">Remove Employee</button>
+
+                <dialog id="dialog">
+                    <h2>Enter the number of the employee you want to remove</h2>
+                    <input id="remove-employee" type="number">
+                    <button onclick="deleteRow(), window.dialog.close();">Remove Employee</button>
+                    <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+                </dialog>
+            </div>
+            <table id="table-body">
+                <tr>
+                    <th>No.</th>
+                    <th>Employee Name</th>
+                    <th>Days Worked</th>
+                    <th>Daily Rate</th>
+                    <th>Gross Pay</th>
+                    <th>Deduction Amount</th>
+                    <th>Net Pay </th>
+                </tr>
+            </table>
+        </div>
+ <br><br>
+ <a href="https://daxen.w3spaces.com">  Back to Home</a>
+
+ <script>
+
+    let employees = [];
+    function addEmployee(){
+        let employee = {
+            name: " ",
+            daysWorked: 0,
+            dailyRate: 0,
+            deductionAmount: 0,
+            grossPay: 0,
+            netPay: 0,
+            number: 0
+        }
+        
+
+        employee.name = document.getElementById("employee-name").value;
+        employee.daysWorked = document.getElementById("days-worked").value;
+        employee.dailyRate = document.getElementById("daily-rate").value;;
+        employee.deductionAmount = document.getElementById("deduction-amount").value;
+        employee.grossPay = employee.daysWorked * employee.dailyRate;
+        employee.netPay = employee.grossPay - employee.deductionAmount;
+        employee.number = employees.length+ 1;
+        employees.push(employee);
+
+
+        let arrLength = employees.length - 1;
+        let temp = [employees[arrLength].number, employees[arrLength].name, employees[arrLength].daysWorked, employees[arrLength].dailyRate, employees[arrLength].grossPay, employees[arrLength].deductionAmount, employees[arrLength].netPay]
+        const element = document.getElementById("table-body");
+        const tr = document.createElement("tr");
+        for(let k = 0; k < temp.length; k++){
+            const td = document.createElement("td");
+            const text = document.createTextNode(temp[k])
+            td.appendChild(text);
+            tr.appendChild(td);
+        }
+        element.appendChild(tr);
+            
+        }
+
+    
+    function deleteRow(){
+        // DEOSNT WORK FIX IR
+        let num = document.getElementById("remove-employee").value;
+        //document.getElementById("table-body").deleteRow(num) 
+        console.log(employees)
+        let i = 0;
+        while(i < employees.length){
+            if(employees[i].number == num){
+
+                document.getElementById("table-body").deleteRow(employees.indexOf(employees[i]) + 1)               
+                let deleted = employees.splice(i,i+1) 
+                console.log(i)
+                console.log(employees.indexOf(employees[i]) + 1)
+                console.log(deleted)
+                console.log(employees)
+            } 
+            i++;
+        }
+        
+    }
+
+    </script>
+</body>
+<style>
+    body {background-image: url('wp2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;}
+    h2 {text-align:center;}
+    p {text-align:center;}
+
+</style>
+</html>
