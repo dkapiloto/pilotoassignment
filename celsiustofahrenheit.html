@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+
+        <title>My World</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+        <style>
+            body {background-image: url('wp2.jpg');
+    background-repeat: no-repeat;
+    background-attatchment: fixed;
+    background-size: cover;}
+    h2 {text-align:center;}
+    p {text-align:center;}
+        </style>
+
+</head>
+<body>
+
+<h2>Temperature Conversion</h2>
+
+<p>
+    Celsius: <input type="number" id="celsiusInput">
+    <button onclick="convertCelsiusToFahrenheit()">Convert to Fahrenheit</button>
+    <span id="resultFahrenheit"></span>
+</p>
+
+ <br><br>
+ <a href="https://daxen.w3spaces.com">  Back to Home</a>
+<script>
+function convertCelsiusToFahrenheit() {
+    const celsius = parseFloat(document.getElementById("celsiusInput").value);
+    const fahrenheit = (celsius * 9 / 5) + 32;
+    document.getElementById("resultFahrenheit").innerText = `Result: ${fahrenheit}°F`;
+}
+
+
+</script>
+
+</body>
+</html>
