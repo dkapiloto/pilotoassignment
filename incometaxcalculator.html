@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My World</title>
+</head>
+<body>
+    <h2>Income Tax Calculator</h2>
+
+<p>
+    <label for="income">Taxable Income</label>
+    <input id="income" name="Taxable Income" type="number">
+
+
+ <button onclick="incomeTaxCalc()"> Compute Income Tax </button> 
+    <h1 id="result">
+
+    </h1>
+</p>
+
+ <br><br>
+ <a href="https://daxen.w3spaces.com">  Back to Home</a>
+
+ <script>
+
+    function incomeTaxCalc() {
+        let netIncome = document.getElementById("income").value
+        let incomeTax;
+    
+        
+        if(isNaN(netIncome)){
+            // window.alert("not a number")
+            return "not a number";
+        }
+    
+        if(netIncome <= 250000){
+            incomeTax = 0;
+        } else if(netIncome <= 400000){
+            incomeTax = 0.2 * (netIncome - 250000);
+        } else if(netIncome <= 800000){
+            incomeTax = 30000 + 0.25 * (netIncome - 400000);
+        } else if(netIncome <= 2000000){
+            incomeTax = 130000 + 0.3 * (netIncome - 800000);
+        } else if(netIncome <= 8000000){
+            incomeTax = 490000 + 0.32 * (netIncome - 2000000);
+        } else{
+            incomeTax = 2410000 + 0.35 * (netIncome - 8000000);
+        }
+    
+        document.getElementById("result").innerHTML = incomeTax;
+    }
+    </script>
+</body>
+<style>
+    body {background-image: url('wp2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;}
+    h2 {text-align:center;}
+    p {text-align:center;}
+
+</style>
+</html>
