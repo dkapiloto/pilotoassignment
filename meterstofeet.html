@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+
+        <title>My World</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+         <style>
+            body {background-image: url('sp.jpg');
+    background-repeat: no-repeat;
+    background-attatchment: fixed;
+    background-size: cover;}
+    h2 {text-align:center;}
+    p {text-align:center;}
+        </style>
+</head>
+<body>
+<h2><text style ="color:White;">Length Conversion</text></h2>
+
+<p>
+    <text style ="color:White;">Feet: <input type="number" id="feetInput"></text>
+    <button onclick="convertFeetToMeters()">Convert to Meters</button>
+    <span id="resultMeters"></span>
+</p>
+ <br><br>
+ <a href="index.html">  Back to Home</a>
+<script>
+function convertFeetToMeters() {
+    const feet = parseFloat(document.getElementById("feetInput").value);
+    const meters = feet / 3.28084;
+    document.getElementById("resultMeters").innerText = Result: ${meters} meters;
+}
+</script>
+
+</body>
+</html>
